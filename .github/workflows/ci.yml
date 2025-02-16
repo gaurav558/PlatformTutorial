@@ -33,3 +33,9 @@ jobs:
         sudo docker login -u ${{ secrets.DOCKER_HUB_USERNAME }} -p ${{ secrets.DOCKER_HUB_TOKEN }}
         sudo docker build -t ${{ secrets.DOCKER_HUB_USERNAME }}/platform-tutorial:latest .
         sudo docker push ${{ secrets.DOCKER_HUB_USERNAME }}/platform-tutorial:latest
+
+    - name: Run Docker container
+      run: |
+        sudo docker pull ${{ secrets.DOCKER_HUB_USERNAME }}/platform-tutorial:latest
+        sudo docker stop $(sudo docker ps -q --filter ancestor=${{ secrets.DOCKER_HUB_USERNAME }}/platform-tutorial:latest)
+        sudo docker run -d -p 8080:8080 ${{ secrets.DOCKER_HUB_USERNAME }}/platform-tutorial:latest 
