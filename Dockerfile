@@ -1,4 +1,4 @@
-FROM 21-alpine3.21-jdk
+FROM eclipse-temurin:21
 
 LABEL authors="cars24"
 
