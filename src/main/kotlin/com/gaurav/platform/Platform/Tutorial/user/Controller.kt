@@ -14,4 +14,10 @@ class Controller {
         return "Hello"
     }
 
+    //  create a new endpoint that returns a list of users
+    @GetMapping("/all")
+    fun getUsers(): List<String> {
+        return listOf("Gaurav", "Rahul", "Rohit")
+    }
+
 }
